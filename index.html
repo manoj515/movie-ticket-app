@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineBook - Movie Tickets</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">🎬 CineBook</div>
+    <nav>
+      <a href="#movies">Movies</a>
+      <a href="#booking">Booking</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="badge">NOW SHOWING</span>
+        <h1>Book your next<br />movie experience.</h1>
+        <p>
+          Choose a movie, select your seats and enjoy the show.
+        </p>
+        <a class="hero-btn" href="#movies">Browse Movies</a>
+      </div>
+    </section>
+
+    <section id="movies" class="section">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">NOW SHOWING</span>
+          <h2>Popular Movies</h2>
+        </div>
+      </div>
+
+      <div id="movie-list" class="movie-grid"></div>
+    </section>
+
+    <section id="booking" class="booking-section">
+      <div class="booking-card">
+        <div class="booking-header">
+          <div>
+            <span class="eyebrow">TICKET BOOKING</span>
+            <h2 id="selected-movie">Select a movie</h2>
+          </div>
+          <span id="step-indicator">1 / 3</span>
+        </div>
+
+        <div class="booking-content">
+          <div class="form-group">
+            <label for="show-date">Date</label>
+            <select id="show-date">
+              <option>Today</option>
+              <option>Tomorrow</option>
+              <option>Day After Tomorrow</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Show Time</label>
+            <div id="show-times" class="time-grid">
+              <button class="time-btn">10:00 AM</button>
+              <button class="time-btn">1:00 PM</button>
+              <button class="time-btn">4:30 PM</button>
+              <button class="time-btn">7:30 PM</button>
+              <button class="time-btn">10:30 PM</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Select Seats</label>
+
+            <div class="screen">SCREEN</div>
+
+            <div id="seat-map" class="seat-map"></div>
+
+            <div class="legend">
+              <span><i class="seat available"></i> Available</span>
+              <span><i class="seat selected"></i> Selected</span>
+              <span><i class="seat occupied"></i> Occupied</span>
+            </div>
+          </div>
+
+          <div class="summary">
+            <div>
+              <span>Tickets</span>
+              <strong id="ticket-count">0</strong>
+            </div>
+
+            <div>
+              <span>Price / ticket</span>
+              <strong>₹250</strong>
+            </div>
+
+            <div class="total">
+              <span>Total</span>
+              <strong id="total-price">₹0</strong>
+            </div>
+          </div>
+
+          <button id="book-btn" class="book-btn" disabled>
+            Confirm Booking
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="confirmation" class="confirmation hidden">
+      <div class="success-icon">✓</div>
+      <h2>Booking Confirmed!</h2>
+      <p>Your movie tickets have been booked successfully.</p>
+
+      <div id="booking-details" class="booking-details"></div>
+
+      <button id="new-booking" class="book-btn">
+        Book Another Movie
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 CineBook. Demo movie booking application.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
