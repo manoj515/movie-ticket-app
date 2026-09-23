@@ -1,190 +1,84 @@
+const seatContainer = document.getElementById("seats");
+
 let selectedSeats = [];
-let selectedTime = null;
+const ticketPrice = 200;
 
-const occupiedSeats = [
-    2, 5, 9, 14, 18, 23, 29, 35, 42, 47
-];
+for (let i = 1; i <= 40; i++) {
 
-const seatsContainer = document.getElementById("seats");
+    const seat = document.createElement("div");
 
-function createSeats() {
+    seat.className = "seat";
+    seat.textContent = i;
 
-    seatsContainer.innerHTML = "";
+    // Some seats are already booked
+    if ([5, 12, 19, 27, 35].includes(i)) {
+        seat.classList.add("booked");
+    }
 
-    for (let i = 1; i <= 48; i++) {
+    seat.addEventListener("click", function () {
 
-        const seat = document.createElement("div");
-
-        seat.classList.add("seat");
-
-        seat.dataset.seat = i;
-
-        if (occupiedSeats.includes(i)) {
-            seat.classList.add("occupied");
+        if (seat.classList.contains("booked")) {
+            return;
         }
 
-        seat.addEventListener("click", () => {
+        seat.classList.toggle("selected");
 
-            if (seat.classList.contains("occupied")) {
-                return;
-            }
+        if (seat.classList.contains("selected")) {
+            selectedSeats.push(i);
+        } else {
+            selectedSeats = selectedSeats.filter(
+                number => number !== i
+            );
+        }
 
-            toggleSeat(seat, i);
+        updateSummary();
+    });
 
-        });
-
-        seatsContainer.appendChild(seat);
-    }
-}
-
-function toggleSeat(seat, number) {
-
-    if (selectedSeats.includes(number)) {
-
-        selectedSeats =
-            selectedSeats.filter(seatNumber => seatNumber !== number);
-
-        seat.classList.remove("selected");
-
-    } else {
-
-        selectedSeats.push(number);
-
-        seat.classList.add("selected");
-    }
-
-    updateSummary();
-}
-
-function selectTime(button) {
-
-    document
-        .querySelectorAll(".showtimes button")
-        .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    selectedTime = button.textContent;
-
-    document.getElementById("summaryTime").textContent =
-        selectedTime;
-}
-
-function updatePrice() {
-
-    const movieSelect =
-        document.getElementById("movieSelect");
-
-    const [movie, price] =
-        movieSelect.value.split("|");
-
-    document.getElementById("summaryMovie").textContent =
-        movie;
-
-    updateSummary();
+    seatContainer.appendChild(seat);
 }
 
 function updateSummary() {
 
-    const movieSelect =
-        document.getElementById("movieSelect");
+    document.getElementById("selectedSeats").textContent =
+        selectedSeats.length
+            ? selectedSeats.join(", ")
+            : "None";
 
-    const [movie, price] =
-        movieSelect.value.split("|");
-
-    const ticketPrice = Number(price);
-
-    document.getElementById("summaryMovie").textContent =
-        movie;
-
-    document.getElementById("summaryTickets").textContent =
-        selectedSeats.length;
-
-    if (selectedSeats.length === 0) {
-
-        document.getElementById("summarySeats").textContent =
-            "None";
-
-    } else {
-
-        const sortedSeats =
-            [...selectedSeats].sort((a, b) => a - b);
-
-        document.getElementById("summarySeats").textContent =
-            sortedSeats
-                .map(seat => `S${seat}`)
-                .join(", ");
-    }
-
-    const total =
+    document.getElementById("total").textContent =
         selectedSeats.length * ticketPrice;
-
-    document.getElementById("totalPrice").textContent =
-        `₹${total}`;
 }
 
-function selectMovie(movie, price) {
+function selectMovie(movie) {
 
-    const select =
-        document.getElementById("movieSelect");
+    document.getElementById("movie").value = movie;
 
-    for (const option of select.options) {
-
-        const [optionMovie] =
-            option.value.split("|");
-
-        if (optionMovie === movie) {
-
-            select.value = option.value;
-            break;
-        }
-    }
-
-    updatePrice();
-
-    document
-        .getElementById("booking")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    document.getElementById("booking").scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 function confirmBooking() {
 
-    const movie =
-        document.getElementById("summaryMovie").textContent;
+    const movie = document.getElementById("movie").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
 
-    if (!selectedTime) {
-
-        alert("Please select a showtime.");
-
+    if (!date) {
+        alert("Please select a date.");
         return;
     }
 
     if (selectedSeats.length === 0) {
-
         alert("Please select at least one seat.");
-
         return;
     }
 
-    const seats =
-        [...selectedSeats]
-            .sort((a, b) => a - b)
-            .map(seat => `S${seat}`)
-            .join(", ");
-
-    const total =
-        document.getElementById("totalPrice").textContent;
-
     alert(
-        `Booking Confirmed!\n\n` +
-        `Movie: ${movie}\n` +
-        `Showtime: ${selectedTime}\n` +
-        `Seats: ${seats}\n` +
-        `Total: ${total}`
+        "Booking Confirmed!\n\n" +
+        "Movie: " + movie + "\n" +
+        "Date: " + date + "\n" +
+        "Time: " + time + "\n" +
+        "Seats: " + selectedSeats.join(", ") + "\n" +
+        "Total: ₹" + (selectedSeats.length * ticketPrice)
     );
 }
-
-createSeats();
-updateSummary();
