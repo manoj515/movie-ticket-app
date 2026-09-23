@@ -3,239 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineBook - Movie Tickets</title>
+    <title>MovieBook - Movie Ticket Booking</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="navbar">
-    <div class="logo">🎬 CineBook</div>
+<header>
+    <div class="logo">🎬 MovieBook</div>
 
     <nav>
         <a href="#movies">Movies</a>
-        <a href="#booking">Booking</a>
-        <a href="#about">About</a>
+        <a href="#booking">Book Tickets</a>
     </nav>
 </header>
 
-<main>
+<section class="hero">
+    <div>
+        <h1>Book Your Movie Tickets</h1>
+        <p>Choose a movie, select your seats and enjoy the show.</p>
+        <a href="#movies" class="btn">Browse Movies</a>
+    </div>
+</section>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div>
-            <p class="tagline">YOUR MOVIE. YOUR SEAT.</p>
-            <h1>Book your next<br><span>cinematic experience.</span></h1>
-            <p class="hero-text">
-                Choose a movie, select your showtime and reserve your seats.
-            </p>
+<section id="movies" class="container">
+    <h2>Now Showing</h2>
 
-            <a href="#movies" class="primary-btn">Browse Movies</a>
-        </div>
-    </section>
+    <div class="movies">
 
-    <!-- Movies -->
-    <section id="movies" class="section">
-        <div class="section-heading">
-            <div>
-                <p class="section-label">NOW SHOWING</p>
-                <h2>Choose a movie</h2>
-            </div>
+        <div class="movie-card">
+            <div class="poster poster1">INTERSTELLAR</div>
+            <h3>Interstellar</h3>
+            <p>Science Fiction • 2h 49m</p>
+            <button onclick="selectMovie('Interstellar')">
+                Book Now
+            </button>
         </div>
 
-        <div class="movie-grid">
-
-            <article class="movie-card">
-                <div class="poster poster-one">
-                    <span>SCI-FI</span>
-                    <strong>NEBULA</strong>
-                </div>
-
-                <div class="movie-info">
-                    <h3>Nebula</h3>
-                    <p>Science Fiction • 2h 18m</p>
-
-                    <div class="rating">⭐ 8.7</div>
-
-                    <button
-                        class="movie-btn"
-                        onclick="selectMovie('Nebula', 220)">
-                        Book Tickets
-                    </button>
-                </div>
-            </article>
-
-            <article class="movie-card">
-                <div class="poster poster-two">
-                    <span>ACTION</span>
-                    <strong>VELOCITY</strong>
-                </div>
-
-                <div class="movie-info">
-                    <h3>Velocity</h3>
-                    <p>Action • 2h 05m</p>
-
-                    <div class="rating">⭐ 8.2</div>
-
-                    <button
-                        class="movie-btn"
-                        onclick="selectMovie('Velocity', 200)">
-                        Book Tickets
-                    </button>
-                </div>
-            </article>
-
-            <article class="movie-card">
-                <div class="poster poster-three">
-                    <span>DRAMA</span>
-                    <strong>THE LAST LIGHT</strong>
-                </div>
-
-                <div class="movie-info">
-                    <h3>The Last Light</h3>
-                    <p>Drama • 2h 11m</p>
-
-                    <div class="rating">⭐ 8.9</div>
-
-                    <button
-                        class="movie-btn"
-                        onclick="selectMovie('The Last Light', 180)">
-                        Book Tickets
-                    </button>
-                </div>
-            </article>
-
+        <div class="movie-card">
+            <div class="poster poster2">INCEPTION</div>
+            <h3>Inception</h3>
+            <p>Action • 2h 28m</p>
+            <button onclick="selectMovie('Inception')">
+                Book Now
+            </button>
         </div>
-    </section>
 
-    <!-- Booking -->
-    <section id="booking" class="booking-section">
-
-        <div class="booking-container">
-
-            <div class="booking-left">
-
-                <p class="section-label">BOOKING</p>
-                <h2>Select your show</h2>
-
-                <div class="booking-form">
-
-                    <label for="movieSelect">Movie</label>
-
-                    <select id="movieSelect" onchange="updatePrice()">
-                        <option value="Nebula|220">Nebula - ₹220</option>
-                        <option value="Velocity|200">Velocity - ₹200</option>
-                        <option value="The Last Light|180">
-                            The Last Light - ₹180
-                        </option>
-                    </select>
-
-                    <label>Showtime</label>
-
-                    <div class="showtimes">
-                        <button onclick="selectTime(this)">10:00 AM</button>
-                        <button onclick="selectTime(this)">01:30 PM</button>
-                        <button onclick="selectTime(this)">04:30 PM</button>
-                        <button onclick="selectTime(this)">07:30 PM</button>
-                        <button onclick="selectTime(this)">10:30 PM</button>
-                    </div>
-
-                </div>
-
-                <div class="screen-container">
-
-                    <div class="screen">
-                        SCREEN
-                    </div>
-
-                    <div id="seats" class="seat-layout">
-                        <!-- Generated by JavaScript -->
-                    </div>
-
-                    <div class="seat-legend">
-                        <span>
-                            <i class="legend-seat available"></i>
-                            Available
-                        </span>
-
-                        <span>
-                            <i class="legend-seat selected"></i>
-                            Selected
-                        </span>
-
-                        <span>
-                            <i class="legend-seat occupied"></i>
-                            Occupied
-                        </span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Summary -->
-            <aside class="summary">
-
-                <p class="section-label">ORDER SUMMARY</p>
-
-                <h2>Your booking</h2>
-
-                <div class="summary-item">
-                    <span>Movie</span>
-                    <strong id="summaryMovie">Nebula</strong>
-                </div>
-
-                <div class="summary-item">
-                    <span>Showtime</span>
-                    <strong id="summaryTime">Not selected</strong>
-                </div>
-
-                <div class="summary-item">
-                    <span>Seats</span>
-                    <strong id="summarySeats">None</strong>
-                </div>
-
-                <div class="summary-item">
-                    <span>Tickets</span>
-                    <strong id="summaryTickets">0</strong>
-                </div>
-
-                <div class="total">
-                    <span>Total</span>
-                    <strong id="totalPrice">₹0</strong>
-                </div>
-
-                <button
-                    id="confirmButton"
-                    class="confirm-btn"
-                    onclick="confirmBooking()">
-                    Confirm Booking
-                </button>
-
-            </aside>
-
+        <div class="movie-card">
+            <div class="poster poster3">THE DARK KNIGHT</div>
+            <h3>The Dark Knight</h3>
+            <p>Action • 2h 32m</p>
+            <button onclick="selectMovie('The Dark Knight')">
+                Book Now
+            </button>
         </div>
-    </section>
 
-    <!-- About -->
-    <section id="about" class="about section">
+    </div>
+</section>
 
-        <p class="section-label">ABOUT</p>
+<section id="booking" class="booking container">
 
-        <h2>Simple movie booking.</h2>
+    <h2>Book Your Tickets</h2>
 
-        <p>
-            CineBook is a static frontend demonstration built with
-            HTML, CSS and JavaScript. It can be packaged as a Docker
-            container and deployed to Kubernetes.
-        </p>
+    <div class="booking-box">
 
-    </section>
+        <label>Movie</label>
+        <select id="movie">
+            <option>Interstellar</option>
+            <option>Inception</option>
+            <option>The Dark Knight</option>
+        </select>
 
-</main>
+        <label>Date</label>
+        <input type="date" id="date">
+
+        <label>Show Time</label>
+        <select id="time">
+            <option>10:00 AM</option>
+            <option>01:30 PM</option>
+            <option>04:30 PM</option>
+            <option>07:30 PM</option>
+            <option>10:30 PM</option>
+        </select>
+
+        <label>Select Seats</label>
+
+        <div class="screen">SCREEN</div>
+
+        <div class="seats" id="seats"></div>
+
+        <div class="summary">
+            <p>Selected Seats: <span id="selectedSeats">None</span></p>
+            <p>Total: ₹<span id="total">0</span></p>
+        </div>
+
+        <button class="confirm" onclick="confirmBooking()">
+            Confirm Booking
+        </button>
+
+    </div>
+
+</section>
 
 <footer>
-    <p>© 2026 CineBook. Static movie booking demo.</p>
+    <p>© 2026 MovieBook. Static Demo Application.</p>
 </footer>
 
 <script src="script.js"></script>
