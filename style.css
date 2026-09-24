@@ -11,202 +11,116 @@ body {
 }
 
 header {
-    background: #020617;
-    padding: 20px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: #7c3aed;
+    text-align: center;
+    padding: 30px;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #facc15;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-}
-
-.hero {
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    padding: 50px 8%;
-    background:
-        linear-gradient(90deg, #020617, rgba(2,6,23,.5)),
-        linear-gradient(135deg, #7c2d12, #312e81);
-}
-
-.hero h1 {
-    font-size: 50px;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
-.btn,
-button {
-    background: #e11d48;
-    border: none;
-    color: white;
-    padding: 12px 22px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+header h1 {
+    font-size: 36px;
 }
 
 .container {
-    width: 84%;
-    margin: 50px auto;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
 h2 {
-    font-size: 32px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-.movies {
+.movie-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
 }
 
 .movie-card {
     background: #1f2937;
+    padding: 20px;
     border-radius: 12px;
-    overflow: hidden;
-    padding-bottom: 20px;
-}
-
-.movie-card h3,
-.movie-card p,
-.movie-card button {
-    margin-left: 20px;
-}
-
-.movie-card h3 {
-    margin-top: 18px;
-    font-size: 22px;
-}
-
-.movie-card p {
-    color: #9ca3af;
-    margin-top: 8px;
-    margin-bottom: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .poster {
-    height: 280px;
+    height: 180px;
+    background: #374151;
+    border-radius: 10px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
+    align-items: center;
+    font-size: 80px;
+    margin-bottom: 15px;
 }
 
-.poster1 {
-    background: linear-gradient(135deg, #172554, #2563eb);
+.movie-card h3 {
+    margin-bottom: 10px;
 }
 
-.poster2 {
-    background: linear-gradient(135deg, #581c87, #9333ea);
-}
-
-.poster3 {
-    background: linear-gradient(135deg, #450a0a, #dc2626);
-}
-
-.booking-box {
-    background: #1f2937;
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 700px;
-}
-
-label {
-    display: block;
-    margin-top: 15px;
+.movie-card p {
+    color: #d1d5db;
     margin-bottom: 8px;
 }
 
-select,
-input {
+.price {
+    color: #fbbf24 !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #6d28d9;
+}
+
+.booking {
+    background: #1f2937;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.booking label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.booking input,
+.booking select {
     width: 100%;
     padding: 12px;
     border-radius: 6px;
     border: none;
-    background: #374151;
-    color: white;
 }
 
-.screen {
-    background: white;
-    color: #111827;
-    text-align: center;
-    padding: 8px;
-    margin: 25px 0;
-    border-radius: 5px;
-}
-
-.seats {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 8px;
-}
-
-.seat {
-    background: #4b5563;
-    padding: 10px 5px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.seat.selected {
-    background: #22c55e;
-}
-
-.seat.booked {
-    background: #ef4444;
-    cursor: not-allowed;
-}
-
-.summary {
-    margin-top: 25px;
-    font-size: 18px;
-    line-height: 1.8;
+.booking h3 {
+    margin-top: 20px;
 }
 
 .confirm {
+    background: #16a34a;
+}
+
+#message {
     margin-top: 20px;
-    width: 100%;
+    color: #4ade80;
+    font-weight: bold;
 }
 
 footer {
     text-align: center;
     padding: 30px;
-    background: #020617;
     color: #9ca3af;
-}
-
-@media (max-width: 800px) {
-    .movies {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 35px;
-    }
-
-    .seats {
-        grid-template-columns: repeat(4, 1fr);
-    }
 }
