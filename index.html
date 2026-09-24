@@ -3,109 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieBook - Movie Ticket Booking</title>
+    <title>Movie Ticket Booking</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <div class="logo">🎬 MovieBook</div>
-
-    <nav>
-        <a href="#movies">Movies</a>
-        <a href="#booking">Book Tickets</a>
-    </nav>
+    <h1>🎬 MovieBook</h1>
+    <p>Book your movie tickets</p>
 </header>
 
-<section class="hero">
-    <div>
-        <h1>Book Your Movie Tickets</h1>
-        <p>Choose a movie, select your seats and enjoy the show.</p>
-        <a href="#movies" class="btn">Browse Movies</a>
-    </div>
-</section>
+<main class="container">
 
-<section id="movies" class="container">
-    <h2>Now Showing</h2>
+    <section class="movies">
+        <h2>Now Showing</h2>
 
-    <div class="movies">
+        <div class="movie-grid">
 
-        <div class="movie-card">
-            <div class="poster poster1">INTERSTELLAR</div>
-            <h3>Interstellar</h3>
-            <p>Science Fiction • 2h 49m</p>
-            <button onclick="selectMovie('Interstellar')">
-                Book Now
-            </button>
+            <div class="movie-card">
+                <div class="poster">🚀</div>
+                <h3>Space Adventure</h3>
+                <p>Action • 2h 15m</p>
+                <p class="price">₹250</p>
+                <button onclick="selectMovie('Space Adventure', 250)">
+                    Book Ticket
+                </button>
+            </div>
+
+            <div class="movie-card">
+                <div class="poster">🦸</div>
+                <h3>Super Hero</h3>
+                <p>Action • 2h 05m</p>
+                <p class="price">₹300</p>
+                <button onclick="selectMovie('Super Hero', 300)">
+                    Book Ticket
+                </button>
+            </div>
+
+            <div class="movie-card">
+                <div class="poster">😂</div>
+                <h3>Funny Friends</h3>
+                <p>Comedy • 1h 50m</p>
+                <p class="price">₹200</p>
+                <button onclick="selectMovie('Funny Friends', 200)">
+                    Book Ticket
+                </button>
+            </div>
+
         </div>
+    </section>
 
-        <div class="movie-card">
-            <div class="poster poster2">INCEPTION</div>
-            <h3>Inception</h3>
-            <p>Action • 2h 28m</p>
-            <button onclick="selectMovie('Inception')">
-                Book Now
-            </button>
-        </div>
-
-        <div class="movie-card">
-            <div class="poster poster3">THE DARK KNIGHT</div>
-            <h3>The Dark Knight</h3>
-            <p>Action • 2h 32m</p>
-            <button onclick="selectMovie('The Dark Knight')">
-                Book Now
-            </button>
-        </div>
-
-    </div>
-</section>
-
-<section id="booking" class="booking container">
-
-    <h2>Book Your Tickets</h2>
-
-    <div class="booking-box">
+    <section class="booking">
+        <h2>Book Your Ticket</h2>
 
         <label>Movie</label>
-        <select id="movie">
-            <option>Interstellar</option>
-            <option>Inception</option>
-            <option>The Dark Knight</option>
-        </select>
+        <input id="movie" type="text" readonly>
 
-        <label>Date</label>
-        <input type="date" id="date">
+        <label>Number of Tickets</label>
+        <input id="tickets" type="number" min="1" value="1"
+               onchange="calculateTotal()">
 
         <label>Show Time</label>
-        <select id="time">
+        <select id="show">
             <option>10:00 AM</option>
             <option>01:30 PM</option>
             <option>04:30 PM</option>
             <option>07:30 PM</option>
-            <option>10:30 PM</option>
+            <option>10:00 PM</option>
         </select>
 
-        <label>Select Seats</label>
-
-        <div class="screen">SCREEN</div>
-
-        <div class="seats" id="seats"></div>
-
-        <div class="summary">
-            <p>Selected Seats: <span id="selectedSeats">None</span></p>
-            <p>Total: ₹<span id="total">0</span></p>
-        </div>
+        <h3>Total: ₹<span id="total">0</span></h3>
 
         <button class="confirm" onclick="confirmBooking()">
             Confirm Booking
         </button>
 
-    </div>
+        <p id="message"></p>
+    </section>
 
-</section>
+</main>
 
 <footer>
-    <p>© 2026 MovieBook. Static Demo Application.</p>
+    <p>MovieBook © 2026</p>
 </footer>
 
 <script src="script.js"></script>
